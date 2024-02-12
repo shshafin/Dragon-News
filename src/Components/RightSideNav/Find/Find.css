@@ -1,0 +1,9 @@
+.gradient-bg {
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+
+  /* Add any other styles you need for your component */
+}
+
+.fb-bg {
+  background: linear-gradient(45deg, #3b5998, #ffffff);
+}

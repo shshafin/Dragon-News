@@ -6,7 +6,7 @@ const Header = () => {
     <div>
       <div className="my-7 text-center space-y-3 ">
         <img
-          className="mx-auto"
+          className="mx-auto w-[330px] md:w-[470px]"
           src={`https://i.imgur.com/ihHd20r.png`}
           alt=""
         />

@@ -4,7 +4,6 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Button,
   Tooltip,
   IconButton,
   Avatar,
@@ -12,9 +11,11 @@ import {
 
 import { AiFillEye, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 
 const News = ({ card }) => {
-  const { rating, total_view, title, image_url, details, author } = card || {};
+  const { rating, total_view, title, image_url, details, author, _id } =
+    card || {};
 
   return (
     <div className="mb-4">
@@ -60,7 +61,17 @@ const News = ({ card }) => {
               {rating.number}
             </Typography>
           </div>
-          <Typography color="gray">{details.slice(0, 273)}</Typography>
+          {details.length > 100 ? (
+            <Typography color="gray">
+              {details.slice(0, 273)}...{" "}
+              <Link to={`/news/${_id}`} className="font-bold text-red-700">
+                Read more
+              </Link>
+            </Typography>
+          ) : (
+            <Typography color="gray">{details}</Typography>
+          )}
+
           <div className="flex justify-between mt-8">
             <div className="group  inline-flex flex-wrap items-center gap-3">
               <Tooltip content="$129 per night">

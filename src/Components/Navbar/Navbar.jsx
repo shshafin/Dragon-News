@@ -11,6 +11,8 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { Link, NavLink } from "react-router-dom";
+import toast from "react-hot-toast";
+import UseAuth from "../../Hook/useAuth";
 
 function NavList() {
   return (
@@ -78,6 +80,17 @@ function NavList() {
 
 const Menubar = () => {
   const [openNav, setOpenNav] = React.useState(false);
+  const { user, LogOut } = UseAuth();
+  // signOut
+  const handleLogout = () => {
+    LogOut()
+      .then(() => {
+        toast.success("Sign out successfully!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   React.useEffect(() => {
     window.addEventListener(
@@ -100,15 +113,26 @@ const Menubar = () => {
               alt=""
             />
 
-            <Link to={"/login"}>
+            {user ? (
               <Button
+                onClick={handleLogout}
                 className="rounded-none  md:px-8"
                 variant="gradient"
                 size="sm"
               >
-                Log In
+                Log out
               </Button>
-            </Link>
+            ) : (
+              <Link to={"/login"}>
+                <Button
+                  className="rounded-none  md:px-8"
+                  variant="gradient"
+                  size="sm"
+                >
+                  Log In
+                </Button>
+              </Link>
+            )}
           </div>
 
           <div className="flex justify-end items-center  ">

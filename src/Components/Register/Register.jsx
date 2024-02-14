@@ -6,12 +6,33 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Menubar from "../Navbar/Navbar";
+import UseAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const { createUser } = UseAuth();
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    console.log(form.get("email"));
+
+    const email = form.get("email");
+    const name = form.get("name");
+    const password = form.get("password");
+    const photo = form.get("photo");
+
+    console.log(email, password, photo, name);
+
+    // email password login
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully registered!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error("registration failed!");
+      });
   };
 
   return (

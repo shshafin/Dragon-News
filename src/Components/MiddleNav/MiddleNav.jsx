@@ -22,7 +22,7 @@ const MiddleNav = () => {
       ) : (
         <div>
           {cards.slice(0, 3).map((card) => (
-            <News key={card.id} card={card}></News>
+            <News key={card._id} card={card}></News>
           ))}
         </div>
       )}

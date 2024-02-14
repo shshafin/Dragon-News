@@ -1,12 +1,30 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import Menubar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
+import UseAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { LogIn } = UseAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    console.log(form.get("email"));
+
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+
+    // signIn
+    LogIn(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully Login!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error("Login failed!");
+      });
   };
 
   return (

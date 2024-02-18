@@ -8,11 +8,13 @@ import {
 import { auth } from "../Firebase/Firebase.config";
 import PropTypes from "prop-types";
 
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+ 
 
   // registration
   const createUser = (email, password) => {
@@ -23,7 +25,6 @@ const AuthProvider = ({ children }) => {
   // user save
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("user dekhaw", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -36,6 +37,7 @@ const AuthProvider = ({ children }) => {
   const LogIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+    
   };
 
   // sign out

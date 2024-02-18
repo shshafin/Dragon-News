@@ -23,7 +23,7 @@ const NewsDetail = () => {
 
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate(-1);
+    navigate("/");
   };
 
   return (
@@ -32,11 +32,11 @@ const NewsDetail = () => {
       <h1 className=" mt-6 text-xl font-semibold text-gray-900">Dragon News</h1>
       <div className="grid md:grid-cols-4 grid-cols-1 gap-5 mt-7 ">
         <div className="md:col-span-3 border rounded-md p-4">
-          <img src={image_url} alt="" />
-          <h1 className="text-2xl font-semibold text-gray-800 my-3 leading-10">
+          <img className="w-full" src={image_url} alt="" />
+          <h1 className="text-2xl font-semibold text-gray-800 my-3 leading-10 text-justify">
             {title}
           </h1>
-          <p className="text-gray-700 leading-7">{details}</p>
+          <p className="text-gray-700 leading-7 text-justify">{details}</p>
           <Button
             onClick={handleNavigate}
             className="flex items-center justify-center gap-2 my-7 text-sm bg-pink-600 "
@@ -51,7 +51,7 @@ const NewsDetail = () => {
           <RightSideNav></RightSideNav>
         </div>
       </div>
-      <div className="flex gap-7 my-5">
+      <div className="md:flex gap-7 my-5">
         {newses.slice(0, 3).map((news) => (
           <div className="" key={news._id}>
             <img className="h-48 w-80 " src={news.image_url} alt="" />

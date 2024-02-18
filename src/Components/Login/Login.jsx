@@ -1,11 +1,13 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import Menubar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { LogIn } = UseAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Login = () => {
       .then((res) => {
         console.log(res.user);
         toast.success("Successfully Login!");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error.message);

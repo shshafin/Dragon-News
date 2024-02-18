@@ -35,12 +35,13 @@ const Routes = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/news/:id",
+        path: "/news/:_id",
         element: (
           <PrivateRoute>
             <NewsDetail></NewsDetail>
           </PrivateRoute>
         ),
+        loader: () => fetch(`/Data/news.json`),
       },
     ],
   },
